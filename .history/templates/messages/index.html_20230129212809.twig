@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Messagerie
+{% endblock %}
+
+{% block body %}
+<section class="container">
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/index.php">Le chat</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/index.php">Accueil <span class="sr-only">(actuel)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/chat.php">Chat</a>
+                </li>
+               
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profil.php">Bonjour   ></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-danger" href="/deconnexion.php"><i class="la la-user"></i></a>
+                    </li>
+
+                
+                    <li class="nav-item">
+                        <a class="btn btn-success" href="/connexion.php"><i class="la la-user"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-success" href="/inscription.php"><i class="la la-plus"></i></a>
+                    </li>
+                     
+                <li class="nav-item">
+                    <a class="btn btn-light" href="/messagerie.php"><i class="la la-envelope la-2x"></i><span id="pm" class="badge badge-primary"><?= ($compte['nombre'] > 0) ? $compte['nombre'] : '' ?></span></a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+</section>
+	<section class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Messagerie</h1>
+				<p>Résumé de la messagerie</p>
+				<p>Reçus :  {{ app.user.received|length }} </p>
+				<p>Envoés : {{ app.user.sent|length }}  </p>
+				<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+					Voir mes dossiers
+				</a>
+                <a href="{{path("send")}}" class="btn btn-primary">Envoyer un message</a>
+			</div>
+		</div>
+	</section>
+	<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+		<div class="offcanvas-header">
+			<h2 class="offcanvas-title" id="offcanvasExampleLabel">Mes dossiers</h2>
+			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+            <div class="list-group">
+                <a href="{{path("messages")}}" class="list-group-item list-group-item-action active">Accueil</a>
+            </div>
+            <div class="list-group">
+                <a href="{{path("received")}} " class="list-group-item list-group-item-action">Boîte de réception</a>
+            </div>
+            <div class="list-group">
+                <a href="{{path("sent")}} " class="list-group-item list-group-item-action">Eléments envoyés</a>
+            </div>
+		</div>
+	</div>
+{% endblock %}

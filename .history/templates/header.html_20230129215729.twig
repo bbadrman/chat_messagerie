@@ -1,0 +1,107 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="\">
+           <img src="#" class="img-circle" width="80" alt="">
+		                 
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor03">
+
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="\">
+                        Accueil                    
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="\">
+                        Annonces
+                                                                                                                                                  
+                                            
+                    </a>
+                </li>
+                 <li class="nav-item">
+                        <a class="nav-link active" href="\">
+                        
+                                <div class="fa-solid fa-envelope" id="cart-btn">{{  app.user.received|length }}</div> 
+                        </a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                {% if app.user %}
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="accountDropdownLink">
+                            <img src="#" class="avatar avatar-mini" alt="Avatar de {{ app.user.username }}">
+                                
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdownLink">
+
+                                <a href="#" class="dropdown-item">
+                                    Créer une annonce                                
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+
+                                <a href="#" class="dropdown-item">
+                                    Mon compte                                 
+                                </a>
+
+                                <a href="#" class="dropdown-item">
+                                    Mes réservations                       
+                                </a>
+
+                                <a href="#" class="dropdown-item">
+                                    Modifier mon profil                                 
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+
+                                <a href="#" class="dropdown-item">
+                                    Déconnexion                               
+                                </a>
+                            </div>
+                        </li>
+                        
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Inscription                                                             
+                                                                                                                            
+                                                                                            
+                                                            
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                Connexion                                                                                          
+                                                                                                                            
+                                                                                            
+                                                            
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% for label, messages in app.flashes %}
+        <div class="container">
+            <div class="alert alert-{{ label }}">
+                {% for message in messages %}
+                    <p>
+                        {{ message | raw }}
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+    
